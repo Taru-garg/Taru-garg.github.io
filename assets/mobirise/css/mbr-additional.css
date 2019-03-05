@@ -1408,38 +1408,113 @@ body {
 .cid-rjIIZ47x1v .card {
   padding-bottom: 1.5rem;
 }
-.cid-rjM1UaMdRu {
-  padding-top: 60px;
-  padding-bottom: 120px;
-  background-color: #ffffff;
+.cid-rjP9fsHHoR {
+  padding-top: 90px;
+  padding-bottom: 90px;
+  background-image: url("../../../assets/images/thapar-institute-of-engineering-technology-logo-458x260.jpg");
 }
-.cid-rjM1UaMdRu h3 {
+.cid-rjP9fsHHoR .mbr-section-subtitle {
+  color: #767676;
   text-align: center;
   font-weight: 300;
 }
-.cid-rjM1UaMdRu .wrap {
-  width: 150px;
-  height: 150px;
-  margin: 0 auto;
+.cid-rjP9fsHHoR .timeline-text-content {
+  padding: 2rem 2.5rem;
+  background: #ffffff;
+  margin-left: 2rem;
 }
-.cid-rjM1UaMdRu .mbr-section-subtitle {
-  color: #767676;
+.cid-rjP9fsHHoR .timeline-text-content p {
+  margin-bottom: 0;
 }
-.cid-rjM1UaMdRu .card {
-  -webkit-flex-basis: 100%;
-  flex-basis: 100%;
+.cid-rjP9fsHHoR .time-line-date-content {
+  margin-right: 2rem;
+}
+.cid-rjP9fsHHoR .time-line-date-content p {
+  padding: 2rem 2.5rem;
+  background: #ffffff;
+  float: right;
+}
+.cid-rjP9fsHHoR .timeline-element {
+  margin-bottom: 50px;
+  position: relative;
   word-wrap: break-word;
+  word-break: break-word;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
 }
-.cid-rjM1UaMdRu ellipse {
-  stroke: rgba(206, 206, 206, 0.4);
+.cid-rjP9fsHHoR .timeline-element:hover .mbr-timeline-date {
+  box-shadow: 0 7px 20px 0px rgba(0, 0, 0, 0.08);
+  transition: all .4s;
 }
-.cid-rjM1UaMdRu path {
-  stroke: #149dcc;
+.cid-rjP9fsHHoR .timeline-element:hover .timeline-text-content {
+  box-shadow: 0 7px 20px 0px rgba(0, 0, 0, 0.08);
+  transition: all .4s;
 }
-@media (max-width: 991px) and (min-width: 768px) {
-  .cid-rjM1UaMdRu .card {
-    -webkit-flex-basis: 33%;
-    flex-basis: 33%;
+.cid-rjP9fsHHoR .mbr-timeline-date,
+.cid-rjP9fsHHoR .timeline-text-content {
+  transition: all .4s;
+}
+.cid-rjP9fsHHoR .reverse {
+  flex-direction: row-reverse;
+  -webkit-flex-direction: row-reverse;
+}
+.cid-rjP9fsHHoR .reverse .timeline-text-content {
+  margin-right: 2rem;
+  margin-left: 0;
+}
+.cid-rjP9fsHHoR .reverse .time-line-date-content {
+  margin-left: 2rem;
+  margin-right: 0rem;
+}
+.cid-rjP9fsHHoR .reverse .time-line-date-content p {
+  float: left;
+}
+.cid-rjP9fsHHoR .iconBackground {
+  position: absolute;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 30px;
+  display: inline-block;
+  background-color: #ffffff;
+  top: 20px;
+  margin-left: -10px;
+}
+.cid-rjP9fsHHoR .separline:before {
+  top: 20px;
+  bottom: 0;
+  position: absolute;
+  content: "";
+  width: 2px;
+  background-color: #ffffff;
+  left: calc(50% - 1px);
+  height: calc(100% + 4rem);
+}
+@media (max-width: 768px) {
+  .cid-rjP9fsHHoR .iconBackground {
+    left: 0 !important;
+  }
+  .cid-rjP9fsHHoR .separline:before {
+    left: 0!important;
+  }
+  .cid-rjP9fsHHoR .timeline-text-content {
+    margin-left: 0 !important;
+  }
+  .cid-rjP9fsHHoR .time-line-date-content {
+    margin-right: 0 !important;
+  }
+  .cid-rjP9fsHHoR .time-line-date-content p {
+    float: left !important;
+  }
+  .cid-rjP9fsHHoR .reverse .time-line-date-content {
+    margin-left: 0 !important;
+  }
+  .cid-rjP9fsHHoR .reverse .timeline-text-content {
+    margin-right: 0 !important;
   }
 }
 .cid-rjM1Yj0Cd0 {
