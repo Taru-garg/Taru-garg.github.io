@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blogs - Taru Garg</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/assets/image/personal_optimized.png"
+    />
+    <link rel="stylesheet" href="assets/css/tailwind.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"
+      integrity="sha512-7x3zila4t2qNycrtZ31HO0NnJr8kg2VI67YLoRSyi9hGhRN66FHYWr7Axa9Y1J9tGYHVBPqIjSE1ogHrJTz51g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./assets/js/index.js"></script>
+    <script src="./assets/js/blogs.js"></script>
+  </head>
+
+  <body class="bg-gray-100">
+    <nav
+      id="navbar"
+      class="navbar fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-90 py-3 px-4"
+    >
+      <div
+        class="navbar-container container max-w-screen-xl mx-auto flex items-center justify-between"
+      >
+        <!-- Logo -->
+        <div class="flex items-center">
+          <a href="index.html">
+            <img
+              src="assets/image/navbar-logo.png"
+              alt="Logo"
+              class="navbar-logo"
+            />
+          </a>
+        </div>
+
+        <!-- Right side buttons -->
+        <div class="flex items-center space-x-3">
+          <a
+            href="assets/files/Resume_Taru_Garg_2024_W10.pdf"
+            download="Resume_Taru_Garg"
+          >
+            <button
+              class="navbar-button px-5 py-2 bg-white font-medium text-gray-700 text-sm rounded-md hover:bg-gray-700 hover:text-white transition ease-linear duration-300 border border-gray-200"
+            >
+              Get my CV
+            </button>
+          </a>
+          <a href="index.html">
+            <button
+              class="navbar-button px-5 py-2 bg-gray-700 font-medium text-white text-sm rounded-md hover:bg-gray-800 transition ease-linear duration-300"
+            >
+              Home
+            </button>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section - Reduced padding -->
+    <section class="py-8 md:py-12">
+      <div class="container max-w-screen-xl mx-auto px-4">
+        <div class="text-center mt-16">
+          <h1
+            class="font-normal text-gray-900 text-4xl md:text-7xl leading-none mb-6"
+          >
+            Blog Posts
+          </h1>
+
+          <p class="font-normal text-gray-600 text-md md:text-xl mb-8">
+            Thoughts on software engineering, performance optimization, and
+            building tools.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Loading indicator -->
+    <div id="loading" class="text-center py-6">
+      <div class="container max-w-screen-xl mx-auto px-4">
+        <div class="flex justify-center items-center">
+          <div
+            class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-700"
+          ></div>
+          <span class="ml-3 text-gray-600">Loading blog posts...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <section class="py-4" id="search-section" style="display: none">
+      <div class="container max-w-screen-xl mx-auto px-4">
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+          <div class="flex flex-col md:flex-row gap-4 items-center">
+            <!-- Search Input -->
+            <div class="flex-1 w-full md:w-auto">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="blog-search"
+                  placeholder="Search blog posts..."
+                  class="w-full px-4 py-2 pl-10 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                />
+                <i data-feather="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4"></i>
+              </div>
+            </div>
+            
+            <!-- Tag Filter -->
+            <div class="w-full md:w-auto">
+              <select
+                id="tag-filter"
+                class="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-white"
+              >
+                <option value="">All Tags</option>
+              </select>
+            </div>
+            
+            <!-- Sort Options -->
+            <div class="w-full md:w-auto">
+              <select
+                id="sort-filter"
+                class="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-white"
+              >
+                <option value="date-desc">Newest First</option>
+                <option value="date-asc">Oldest First</option>
+                <option value="title-asc">Title A-Z</option>
+                <option value="title-desc">Title Z-A</option>
+              </select>
+            </div>
+            
+            <!-- Posts per page -->
+            <div class="w-full md:w-auto">
+              <select
+                id="posts-per-page"
+                class="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-white"
+              >
+                <option value="6">6 per page</option>
+                <option value="9">9 per page</option>
+                <option value="12">12 per page</option>
+                <option value="18">18 per page</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Results Info -->
+          <div class="mt-4 flex justify-between items-center text-sm text-gray-600">
+            <div id="results-info">
+              <!-- Results count will be displayed here -->
+            </div>
+            <button
+              id="clear-filters"
+              class="text-blue-600 hover:text-blue-800 transition-colors"
+              style="display: none"
+            >
+              Clear all filters
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Posts Section - Reduced padding -->
+    <section class="py-4 md:py-6" id="blogs-section" style="display: none">
+      <div class="container max-w-screen-xl mx-auto px-4">
+        <div
+          id="blog-posts-container"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <!-- Blog posts will be dynamically inserted here -->
+        </div>
+        
+        <!-- Pagination -->
+        <div id="pagination" class="flex justify-center items-center mt-8 space-x-2">
+          <!-- Pagination will be dynamically inserted here -->
+        </div>
+
+        <!-- No posts message -->
+        <div id="no-posts" class="text-center py-16" style="display: none">
+          <div class="bg-gray-50 px-8 py-12 rounded-md">
+            <div
+              class="w-20 py-6 flex justify-center bg-gray-100 rounded-md mb-4 mx-auto"
+            >
+              <i data-feather="edit-3" class="text-gray-400"></i>
+            </div>
+            <h4 class="font-medium text-gray-700 text-lg mb-4">
+              No Blog Posts Yet
+            </h4>
+            <p class="font-normal text-gray-500 text-md">
+              Blog posts will appear here once they're added to the assets/blogs
+              directory.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="text-white py-6 mt-8">
+      <div class="container mx-auto text-center">
+        <div class="flex justify-center space-x-6 mt-4">
+          <!-- GitHub Icon -->
+          <a
+            href="https://github.com/Taru-garg"
+            target="_blank"
+            class="text-gray-400 hover:text-gray-600"
+          >
+            <i class="fab fa-github fa-lg"></i>
+          </a>
+
+          <!-- Email Icon -->
+          <a
+            href="mailto:tarugarg2@gmail.com"
+            class="text-gray-400 hover:text-gray-600"
+          >
+            <i class="fas fa-envelope fa-lg"></i>
+          </a>
+
+          <!-- Phone Icon -->
+          <a href="tel:+918708694544" class="text-gray-400 hover:text-gray-600">
+            <i class="fas fa-phone fa-lg"></i>
+          </a>
+
+          <!-- Linkedin Icon -->
+          <a
+            href="https://www.linkedin.com/in/taru-garg/"
+            target="_blank"
+            class="text-gray-400 hover:text-gray-600"
+          >
+            <i class="fab fa-linkedin fa-lg"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Initialize feather icons
+      feather.replace();
+
+      // Blog posts functionality
+      class BlogManager {
+        constructor() {
+          this.blogPosts = [];
+          this.filteredPosts = [];
+          this.currentPage = 1;
+          this.postsPerPage = 6;
+          this.currentFilters = {
+            search: '',
+            tag: '',
+            sort: 'date-desc'
+          };
+          this.init();
+        }
+
+        async init() {
+          await this.loadBlogPosts();
+          this.setupEventListeners();
+          this.populateTagFilter();
+          this.renderBlogPosts();
+        }
+
+        async loadBlogPosts() {
+          try {
+            // Get list of markdown files from assets/blogs directory
+            const blogFiles = await this.getBlogFiles();
+
+            for (const file of blogFiles) {
+              try {
+                const content = await this.loadBlogContent(file);
+                const metadata = this.extractMetadata(content, file);
+                this.blogPosts.push(metadata);
+              } catch (error) {
+                console.warn(`Failed to load blog post: ${file}`, error);
+              }
+            }
+
+            this.filteredPosts = [...this.blogPosts];
+            this.sortPostsByDate();
+          } catch (error) {
+            console.error("Failed to load blog posts:", error);
+          }
+        }
+
+        async getBlogFiles() {
+          return [
+            "why-i-stopped-using-ai-for-backend.md",
+          ];
+        }
+
+        async loadBlogContent(filename) {
+          const response = await fetch(`assets/blogs/${filename}`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return await response.text();
+        }
+
+        extractMetadata(content, filename) {
+          const lines = content.split("\n");
+          const metadata = {
+            filename: filename,
+            title: "",
+            date: new Date().toISOString().split("T")[0], // Default to today
+            excerpt: "",
+            tags: [],
+            readTime: Math.ceil(content.split(" ").length / 200), // Estimate reading time
+          };
+
+          // Look for frontmatter (YAML between --- markers)
+          if (lines[0] === "---") {
+            let i = 1;
+            while (i < lines.length && lines[i] !== "---") {
+              const line = lines[i].trim();
+              if (line.includes(":")) {
+                const [key, ...valueParts] = line.split(":");
+                const value = valueParts.join(":").trim();
+
+                switch (key.toLowerCase()) {
+                  case "title":
+                    metadata.title = value.replace(/['"]/g, "");
+                    break;
+                  case "date":
+                    metadata.date = value.replace(/['"]/g, "");
+                    break;
+                  case "excerpt":
+                  case "description":
+                    metadata.excerpt = value.replace(/['"]/g, "");
+                    break;
+                  case "tags":
+                    metadata.tags = value
+                      .replace(/[\[\]'"]/g, "")
+                      .split(",")
+                      .map((t) => t.trim())
+                      .filter(t => t.length > 0);
+                    break;
+                }
+              }
+              i++;
+            }
+          }
+
+          // If no excerpt found, extract first paragraph after any frontmatter
+          if (!metadata.excerpt) {
+            const contentStart = lines[0] === "---" ? lines.findIndex((line, i) => i > 0 && line === "---") + 1 : 0;
+            const contentLines = lines.slice(contentStart);
+            
+            for (const line of contentLines) {
+              const cleaned = line.replace(/^#+\s*/, "").trim();
+              if (cleaned && !cleaned.startsWith("---") && cleaned.length > 20) {
+                metadata.excerpt =
+                  cleaned.substring(0, 150) +
+                  (cleaned.length > 150 ? "..." : "");
+                break;
+              }
+            }
+          }
+
+          return metadata;
+        }
+
+        sortPostsByDate() {
+          this.blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+          this.filteredPosts.sort(
+            (a, b) => new Date(b.date) - new Date(a.date)
+          );
+        }
+
+        setupEventListeners() {
+          const searchInput = document.getElementById("blog-search");
+          const tagFilter = document.getElementById("tag-filter");
+          const sortFilter = document.getElementById("sort-filter");
+          const postsPerPageSelect = document.getElementById("posts-per-page");
+          const clearFiltersBtn = document.getElementById("clear-filters");
+
+          if (searchInput) {
+            searchInput.addEventListener("input", (e) => {
+              this.currentFilters.search = e.target.value;
+              this.currentPage = 1;
+              this.applyFilters();
+            });
+          }
+
+          if (tagFilter) {
+            tagFilter.addEventListener("change", (e) => {
+              this.currentFilters.tag = e.target.value;
+              this.currentPage = 1;
+              this.applyFilters();
+            });
+          }
+
+          if (sortFilter) {
+            sortFilter.addEventListener("change", (e) => {
+              this.currentFilters.sort = e.target.value;
+              this.currentPage = 1;
+              this.applyFilters();
+            });
+          }
+
+          if (postsPerPageSelect) {
+            postsPerPageSelect.addEventListener("change", (e) => {
+              this.postsPerPage = parseInt(e.target.value);
+              this.currentPage = 1;
+              this.renderBlogPosts();
+            });
+          }
+
+          if (clearFiltersBtn) {
+            clearFiltersBtn.addEventListener("click", () => {
+              this.clearAllFilters();
+            });
+          }
+        }
+
+        populateTagFilter() {
+          const tagFilter = document.getElementById("tag-filter");
+          if (!tagFilter) return;
+
+          // Get all unique tags
+          const allTags = new Set();
+          this.blogPosts.forEach(post => {
+            post.tags.forEach(tag => allTags.add(tag));
+          });
+
+          // Clear existing options (except "All Tags")
+          tagFilter.innerHTML = '<option value="">All Tags</option>';
+
+          // Add tag options
+          Array.from(allTags).sort().forEach(tag => {
+            const option = document.createElement('option');
+            option.value = tag;
+            option.textContent = tag;
+            tagFilter.appendChild(option);
+          });
+        }
+
+        clearAllFilters() {
+          this.currentFilters = {
+            search: '',
+            tag: '',
+            sort: 'date-desc'
+          };
+          this.currentPage = 1;
+
+          // Reset form elements
+          const searchInput = document.getElementById("blog-search");
+          const tagFilter = document.getElementById("tag-filter");
+          const sortFilter = document.getElementById("sort-filter");
+
+          if (searchInput) searchInput.value = '';
+          if (tagFilter) tagFilter.value = '';
+          if (sortFilter) sortFilter.value = 'date-desc';
+
+          this.applyFilters();
+        }
+
+        applyFilters() {
+          this.filteredPosts = this.blogPosts.filter(post => {
+            // Search filter
+            if (this.currentFilters.search) {
+              const searchTerm = this.currentFilters.search.toLowerCase();
+              const matchesSearch = 
+                post.title.toLowerCase().includes(searchTerm) ||
+                post.excerpt.toLowerCase().includes(searchTerm) ||
+                post.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+              
+              if (!matchesSearch) return false;
+            }
+
+            // Tag filter
+            if (this.currentFilters.tag) {
+              if (!post.tags.includes(this.currentFilters.tag)) return false;
+            }
+
+            return true;
+          });
+
+          // Apply sorting
+          this.sortPosts();
+          this.renderBlogPosts();
+          this.updateResultsInfo();
+          this.toggleClearFiltersButton();
+        }
+
+        sortPosts() {
+          switch (this.currentFilters.sort) {
+            case 'date-desc':
+              this.filteredPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+              break;
+            case 'date-asc':
+              this.filteredPosts.sort((a, b) => new Date(a.date) - new Date(b.date));
+              break;
+            case 'title-asc':
+              this.filteredPosts.sort((a, b) => a.title.localeCompare(b.title));
+              break;
+            case 'title-desc':
+              this.filteredPosts.sort((a, b) => b.title.localeCompare(a.title));
+              break;
+          }
+        }
+
+        updateResultsInfo() {
+          const resultsInfo = document.getElementById("results-info");
+          if (!resultsInfo) return;
+
+          const totalPosts = this.filteredPosts.length;
+          const totalPages = Math.ceil(totalPosts / this.postsPerPage);
+          const startPost = (this.currentPage - 1) * this.postsPerPage + 1;
+          const endPost = Math.min(this.currentPage * this.postsPerPage, totalPosts);
+
+          if (totalPosts === 0) {
+            resultsInfo.textContent = "No blog posts found";
+          } else {
+            resultsInfo.textContent = `Showing ${startPost}-${endPost} of ${totalPosts} posts`;
+          }
+        }
+
+        toggleClearFiltersButton() {
+          const clearBtn = document.getElementById("clear-filters");
+          if (!clearBtn) return;
+
+          const hasFilters = 
+            this.currentFilters.search || 
+            this.currentFilters.tag || 
+            this.currentFilters.sort !== 'date-desc';
+
+          clearBtn.style.display = hasFilters ? 'block' : 'none';
+        }
+
+        renderBlogPosts() {
+          const container = document.getElementById("blog-posts-container");
+          const loading = document.getElementById("loading");
+          const blogsSection = document.getElementById("blogs-section");
+          const noPosts = document.getElementById("no-posts");
+          const searchSection = document.getElementById("search-section");
+
+          loading.style.display = "none";
+          blogsSection.style.display = "block";
+          searchSection.style.display = "block";
+
+          if (this.filteredPosts.length === 0) {
+            container.innerHTML = "";
+            noPosts.style.display = "block";
+            document.getElementById("pagination").innerHTML = "";
+            this.updateResultsInfo();
+            return;
+          }
+
+          noPosts.style.display = "none";
+
+          // Calculate pagination
+          const totalPages = Math.ceil(this.filteredPosts.length / this.postsPerPage);
+          const startIndex = (this.currentPage - 1) * this.postsPerPage;
+          const endIndex = startIndex + this.postsPerPage;
+          const postsToShow = this.filteredPosts.slice(startIndex, endIndex);
+
+          // Render posts
+          container.innerHTML = postsToShow
+            .map(
+              (post, index) => `
+            <div class="bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-200">
+              <div class="p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-sm text-gray-500 font-medium">${this.formatDate(
+                    post.date
+                  )}</span>
+                  <span class="text-sm text-gray-400">${
+                    post.readTime
+                  } min read</span>
+                </div>
+                
+                <h3 class="font-semibold text-gray-800 text-xl mb-3 hover:text-gray-600 transition-colors">
+                  <a href="assets/blogs/${post.filename}" class="block">
+                    ${post.title}
+                  </a>
+                </h3>
+                
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                  ${post.excerpt || 'Click to read more...'}
+                </p>
+                
+                ${
+                  post.tags.length > 0
+                    ? `
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    ${post.tags
+                      .map(
+                        (tag) => `
+                      <span class="px-2 py-1 bg-blue-100 text-blue-600 text-xs rounded-md hover:bg-blue-200 cursor-pointer transition-colors" onclick="blogManager.filterByTag('${tag}')">
+                        ${tag}
+                      </span>
+                    `
+                      )
+                      .join("")}
+                  </div>
+                `
+                    : ""
+                }
+                
+                <a 
+                  href="./blog-post.html?post=${post.filename}" 
+                  class="inline-flex items-center text-blue-600 font-medium text-sm hover:text-blue-800 transition-colors"
+                >
+                  Read more
+                  <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          `
+            )
+            .join("");
+
+          // Render pagination
+          this.renderPagination(totalPages);
+          this.updateResultsInfo();
+
+          // Re-initialize feather icons for new content
+          feather.replace();
+        }
+
+        renderPagination(totalPages) {
+          const pagination = document.getElementById("pagination");
+          if (!pagination || totalPages <= 1) {
+            pagination.innerHTML = "";
+            return;
+          }
+
+          let paginationHTML = "";
+
+          // Previous button
+          if (this.currentPage > 1) {
+            paginationHTML += `
+              <button 
+                onclick="blogManager.goToPage(${this.currentPage - 1})" 
+                class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50 hover:text-gray-700 transition-colors"
+              >
+                Previous
+              </button>
+            `;
+          }
+
+          // Page numbers
+          const maxVisiblePages = 5;
+          let startPage = Math.max(1, this.currentPage - Math.floor(maxVisiblePages / 2));
+          let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+          // Adjust start page if we're near the end
+          if (endPage - startPage < maxVisiblePages - 1) {
+            startPage = Math.max(1, endPage - maxVisiblePages + 1);
+          }
+
+          // First page and ellipsis
+          if (startPage > 1) {
+            paginationHTML += `
+              <button 
+                onclick="blogManager.goToPage(1)" 
+                class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 hover:bg-gray-50 hover:text-gray-700 transition-colors"
+              >
+                1
+              </button>
+            `;
+            if (startPage > 2) {
+              paginationHTML += `
+                <span class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300">
+                  ...
+                </span>
+              `;
+            }
+          }
+
+          // Page numbers
+          for (let i = startPage; i <= endPage; i++) {
+            const isActive = i === this.currentPage;
+            paginationHTML += `
+              <button 
+                onclick="blogManager.goToPage(${i})" 
+                class="px-3 py-2 text-sm font-medium ${
+                  isActive
+                    ? 'text-blue-600 bg-blue-50 border border-blue-300'
+                    : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-50 hover:text-gray-700'
+                } transition-colors"
+              >
+                ${i}
+              </button>
+            `;
+          }
+
+          // Last page and ellipsis
+          if (endPage < totalPages) {
+            if (endPage < totalPages - 1) {
+              paginationHTML += `
+                <span class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300">
+                  ...
+                </span>
+              `;
+            }
+            paginationHTML += `
+              <button 
+                onclick="blogManager.goToPage(${totalPages})" 
+                class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 hover:bg-gray-50 hover:text-gray-700 transition-colors"
+              >
+                ${totalPages}
+              </button>
+            `;
+          }
+
+          // Next button
+          if (this.currentPage < totalPages) {
+            paginationHTML += `
+              <button 
+                onclick="blogManager.goToPage(${this.currentPage + 1})" 
+                class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50 hover:text-gray-700 transition-colors"
+              >
+                Next
+              </button>
+            `;
+          }
+
+          pagination.innerHTML = paginationHTML;
+        }
+
+        goToPage(page) {
+          this.currentPage = page;
+          this.renderBlogPosts();
+          
+          // Scroll to top of blog section
+          document.getElementById("blogs-section").scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+
+        filterByTag(tag) {
+          const tagFilter = document.getElementById("tag-filter");
+          if (tagFilter) {
+            tagFilter.value = tag;
+            this.currentFilters.tag = tag;
+            this.currentPage = 1;
+            this.applyFilters();
+          }
+        }
+
+        formatDate(dateString) {
+          const date = new Date(dateString);
+          return date.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
+        }
+      }
+
+      // Initialize blog manager when DOM is ready
+      let blogManager;
+      document.addEventListener("DOMContentLoaded", () => {
+        blogManager = new BlogManager();
+      });
+    </script>
+  </body>
+</html>

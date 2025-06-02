@@ -1,0 +1,41 @@
+      .navbar {
+        transition: all 0.3s ease-in-out;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+      
+      .navbar.scrolled {
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        padding: 0.5rem 1rem;
+        margin: 0.75rem 1rem;
+        border-radius: 1rem;
+        max-width: calc(100% - 2rem);
+      }
+      
+      .navbar.scrolled .navbar-container {
+        max-width: 1200px;
+      }
+      
+      .navbar.scrolled .navbar-logo {
+        height: 1.5rem;
+      }
+      
+      .navbar.scrolled .navbar-button {
+        padding: 0.375rem 1rem;
+        font-size: 0.875rem;
+      }
+      
+      .navbar-logo {
+        height: 2rem;
+        width: auto;
+        transition: all 0.3s ease-in-out;
+      }
+      
+      .navbar-button {
+        transition: all 0.3s ease-in-out;
+      }
+      
+      body {
+        padding-top: 70px; /* Reduced padding */
+      }
