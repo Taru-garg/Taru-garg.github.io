@@ -339,7 +339,7 @@ class BlogManager {
                 </div>
                 
                 <h3 class="font-semibold text-gray-800 text-xl mb-3 hover:text-gray-600 transition-colors">
-                  <a href="assets/blogs/${post.filename}" class="block">
+                  <a href="./blog-post.html?post=${post.filename}" class="block">
                     ${post.title}
                   </a>
                 </h3>
