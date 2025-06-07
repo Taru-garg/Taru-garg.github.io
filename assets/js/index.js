@@ -1,5 +1,3 @@
-feather.replace();
-
 // Navbar shrinking functionality
 window.addEventListener("scroll", function () {
   const navbar = document.getElementById("navbar");
